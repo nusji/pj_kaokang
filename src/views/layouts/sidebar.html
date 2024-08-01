@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Sidebar</title>
+    <style>
+        body {
+            display: flex;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 15px;
+        }
+        .content {
+            flex: 1;
+            padding: 15px;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        .sidebar a.active {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <a href="#" data-page="home" class="active">Home</a>
+    <a href="#" data-page="about">About</a>
+    <a href="#" data-page="services">Services</a>
+    <a href="#" data-page="contact">Contact</a>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.sidebar a').on('click', function(event) {
+            event.preventDefault();
+            var page = $(this).data('page');
+            
+            // Update active link
+            $('.sidebar a').removeClass('active');
+            $(this).addClass('active');
+            
+            // Load content dynamically
+            $('#content').load(page + '.html');
+        });
+    });
+</script>
+
+</body>
+</html>
